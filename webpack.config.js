@@ -21,7 +21,7 @@ module.exports  = () => {
           use: {
             loader:  'babel-loader'
           }
-        }
+        },
       ]
     },
     plugins: [cleanDist, htmlPlugin]
