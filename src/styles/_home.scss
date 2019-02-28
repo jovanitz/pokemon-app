@@ -1,0 +1,33 @@
+body {
+  background: #fcfcfd;
+}
+
+.pokemon-app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 1em 0 3em;
+  }
+
+  .pokemons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: $height-menu;
+  }
+}
+
+@include lg {
+  .pokemon-app {
+    .pokemons {
+      padding-top: 2em;
+    }
+  }
+}

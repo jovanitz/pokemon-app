@@ -1,9 +1,8 @@
 import React, { PureComponent } from "react";
 import axios from 'axios';
-import "@babel/polyfill";
 import { TablePagination , ClickAwayListener} from '@material-ui/core';
+import menu from 'hoc/menu';
 import PokemonCard from 'components/PokemonCard';
-import 'styles/main.scss';
 import { API } from 'helpers';
 import { v4 } from 'uuid';
 
@@ -29,7 +28,7 @@ async function getPokemonsImages(pokemons) {
   return results;
 }
 
-class App extends PureComponent {
+class Home extends PureComponent {
   _isMounted = true;
 
   constructor(){
@@ -81,29 +80,31 @@ class App extends PureComponent {
     
     return (
       <div className='pokemon-app'>
-      <div className="pagination">
-        <TablePagination
-          component="div"
-          count={ count }
-          rowsPerPage={ PAGE_SIZE }
-          page={ page }
-          backIconButtonProps={{
-            'aria-label': 'Previous Page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'Next Page',
-          }}
-          onChangePage={ (e, num) => this.getPokemons(num) }
-          rowsPerPageOptions={ [] }
-          labelDisplayedRows={
-            ({ from, to, count }) => `${ from }-${ to } de ${ count }`
-          }
-        />
-      </div>
-      { pokemons }
+        <div className='pokemons'>
+          { pokemons }
+        </div>
+        <div className="pagination">
+          <TablePagination
+            component="div"
+            count={ count }
+            rowsPerPage={ PAGE_SIZE }
+            page={ page }
+            backIconButtonProps={{
+              'aria-label': 'Previous Page',
+            }}
+            nextIconButtonProps={{
+              'aria-label': 'Next Page',
+            }}
+            onChangePage={ (e, num) => this.getPokemons(num) }
+            rowsPerPageOptions={ [] }
+            labelDisplayedRows={
+              ({ from, to, count }) => `${ from }-${ to } de ${ count }`
+            }
+          />
+        </div>
       </div>
       )
   }
 }
 
-export default App;
+export default menu(Home);

@@ -35,8 +35,10 @@
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
+    "react-animate-on-scroll": "^2.1.5",
     "react-dom": "^16.8.3",
     "uuid": "^3.3.2"
   }

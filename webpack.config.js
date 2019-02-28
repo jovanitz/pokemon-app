@@ -7,7 +7,13 @@ const devMode = process.env.NODE_ENV !== 'production';
 const htmlPlugin =  new HtmlWebPackPlugin({
   template: require('html-webpack-template'),
   appMountId: 'index',
-  inject: false
+  inject: false,
+  meta: [
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0'
+    }
+  ]
 });
 
 const cleanDist = new CleanWebpackPlugin(['dist/*']);
@@ -27,7 +33,7 @@ module.exports  = () => {
     ],
     resolve: {
       alias: {
-        views: path.resolve('src/containers'),
+        containers: path.resolve('src/containers'),
         helpers: path.resolve('src/helpers'),
         styles: path.resolve('src/styles'),
         components: path.resolve('src/components'),
