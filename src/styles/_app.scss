@@ -1,0 +1,12 @@
+body {
+  background: #fcfcfd;
+}
+.pokemon-app {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .pagination {
+    width: 100%;
+  }
+}

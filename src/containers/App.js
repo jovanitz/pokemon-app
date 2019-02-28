@@ -3,7 +3,7 @@ import axios from 'axios';
 import "@babel/polyfill";
 import { TablePagination , ClickAwayListener} from '@material-ui/core';
 import Pokemon from 'components/Pokemon';
-import 'styles/app.scss';
+import 'styles/main.scss';
 import { API } from 'helpers';
 import { v4 } from 'uuid';
 
@@ -13,7 +13,17 @@ async function getInfoPokemons(pokemons) {
   const promises = pokemons.map(async item => {
     const response = await axios.get(item.url);
 
-    return { name: item.name, data: response.data};
+    return { name: item.name, data: response.data };
+  });
+  const results = await Promise.all(promises)
+  return results;
+}
+
+async function getPokemonsImages(pokemons) {
+  const promises = pokemons.map(async item => {
+    const response = await axios.get(item.data.sprites.back_default, { responseType: 'arraybuffer' });
+
+    return { ...item,  image: response.data };
   });
   const results = await Promise.all(promises)
   return results;
@@ -44,8 +54,18 @@ class App extends PureComponent {
       const { count, results} = data;
       if (count && results && this._isMounted) {
         getInfoPokemons(results).then(res => {
-          const pokemons = res.map(data => <Pokemon key={ v4() } { ...data } />);
-          this.setState({ count, page, pokemons }); 
+          getPokemonsImages(res).then(res => {
+            const pokemons = res.map(data => {
+              const base64 = btoa(
+                new Uint8Array(data.image).reduce(
+                  (data, byte) => data + String.fromCharCode(byte),
+                  '',
+                ),
+              );
+              return <Pokemon key={ v4() } { ...data } image={ `data:;base64,${ base64 }`} />;
+            });
+            this.setState({ count, page, pokemons }); 
+          })
         });
       }
     })
@@ -60,7 +80,7 @@ class App extends PureComponent {
     const { count, page = 0, pokemons } = this.state;
     
     return (
-      <div>
+      <div className='pokemon-app'>
       <div className="pagination">
         <TablePagination
           component="div"
