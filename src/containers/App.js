@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import axios from 'axios';
 import "@babel/polyfill";
 import { TablePagination , ClickAwayListener} from '@material-ui/core';
-import Pokemon from 'components/Pokemon';
+import PokemonCard from 'components/PokemonCard';
 import 'styles/main.scss';
 import { API } from 'helpers';
 import { v4 } from 'uuid';
@@ -62,7 +62,7 @@ class App extends PureComponent {
                   '',
                 ),
               );
-              return <Pokemon key={ v4() } { ...data } image={ `data:;base64,${ base64 }`} />;
+              return <PokemonCard key={ v4() } { ...data } image={ `data:;base64,${ base64 }`} />;
             });
             this.setState({ count, page, pokemons }); 
           })

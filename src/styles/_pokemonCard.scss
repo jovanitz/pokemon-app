@@ -1,4 +1,4 @@
-.pokemon {
+.pokemon-card {
   background-color: white;
   border-radius: 50%;
   box-shadow: 0 2.5px 3px 0 rgba(0, 0, 0, 0.09);
@@ -30,7 +30,7 @@
 }
 
 @include lg {
-  .pokemon {
+  .pokemon-card {
     width: 200px;
     height: 200px;
   }

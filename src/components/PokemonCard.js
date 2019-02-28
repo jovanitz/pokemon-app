@@ -13,20 +13,20 @@ const styles = theme => ({
   },
 });
 
-class Pokemon extends PureComponent {
+class PokemonCard extends PureComponent {
   render(){
     const { data = {}, name = {}, image= '', classes } = this.props;
     const { sprites = {} } = data;
     const { back_default = '' } = sprites;
 
     return (
-      <div className='pokemon'>
-        <div className='pokemon__name'>{ name }</div>
+      <div className='pokemon-card'>
+        <div className='pokemon-card__name'>{ name }</div>
         <img src={ image } />
         <Tooltip title="Add to Favorites">
           <StarBorder className={classes.icon} />
         </Tooltip>
-        <div className='pokemon__info'>
+        <div className='pokemon-card__info'>
           <Tooltip title="See More">
             <Info className={classes.icon} />
           </Tooltip>
@@ -36,11 +36,11 @@ class Pokemon extends PureComponent {
   }
 }
 
-Pokemon.propTypes = {
+PokemonCard.propTypes = {
   data: PropTypes.object,
   name: PropTypes.string,
   image: PropTypes.string,
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Pokemon);
+export default withStyles(styles)(PokemonCard);
