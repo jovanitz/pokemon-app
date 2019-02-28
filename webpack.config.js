@@ -6,7 +6,8 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 const htmlPlugin =  new HtmlWebPackPlugin({
   template: require('html-webpack-template'),
-  appMountId: 'index'
+  appMountId: 'index',
+  inject: false
 });
 
 const cleanDist = new CleanWebpackPlugin(['dist/*']);
@@ -27,6 +28,7 @@ module.exports  = () => {
     resolve: {
       alias: {
         views: path.resolve('src/containers'),
+        helpers: path.resolve('src/helpers'),
         styles: path.resolve('src/styles'),
         components: path.resolve('src/components'),
         hoc: path.resolve('src/hoc'),
