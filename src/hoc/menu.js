@@ -4,8 +4,13 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import Menu from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { selector } from 'helpers';
+import { setPokemons } from 'state/actions';
 
 const mapStateToProps = state => ({ pokemons: selector(state, 'pokemonReducer', 'pokemons') });
+
+const mapDispatchToProps = dispatch => ({
+  setPokemons: pokemons => dispatch(setPokemons(pokemons)),
+});
 
 
 function menu(WrappedComponent) {
@@ -49,9 +54,10 @@ function menu(WrappedComponent) {
 
   MenuApp.propTypes = {
     pokemons: PropTypes.shape(),
+    setPokemons: PropTypes.function,
   };
 
-  return connect(mapStateToProps, undefined)(MenuApp);
+  return connect(mapStateToProps, mapDispatchToProps)(MenuApp);
 }
 
 export default menu;

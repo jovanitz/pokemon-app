@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { Map, fromJS } from 'immutable';
 
 export const API = 'https://pokeapi.co/api/v2';
 
@@ -11,5 +10,5 @@ export function selector(state, reducer, value) {
     data => data[value]
   );
 
-  return Map.isMap(getValue(state)) ? getValue(state) : fromJS(getValue(state));
+  return getValue(state);
 }

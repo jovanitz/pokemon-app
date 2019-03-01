@@ -1,7 +1,5 @@
-import { List } from 'immutable';
-
 const initialState = {
-  pokemons: List(),
+  pokemons: [],
 };
 
 function reducer(state = initialState, action = {}) {
