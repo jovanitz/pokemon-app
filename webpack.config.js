@@ -38,6 +38,7 @@ module.exports  = () => {
         styles: path.resolve('src/styles'),
         components: path.resolve('src/components'),
         hoc: path.resolve('src/hoc'),
+        state: path.resolve('src/state'),
       },
     },
     module: {

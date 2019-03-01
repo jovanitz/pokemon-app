@@ -2,6 +2,11 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ScrollAnimation from 'react-animate-on-scroll';
 import Menu from '@material-ui/icons/Menu';
+import { connect } from 'react-redux';
+import { selector } from 'helpers';
+
+const mapStateToProps = state => ({ pokemons: selector(state, 'pokemonReducer', 'pokemons') });
+
 
 function menu(WrappedComponent) {
   class MenuApp extends PureComponent {
@@ -43,14 +48,10 @@ function menu(WrappedComponent) {
   }
 
   MenuApp.propTypes = {
-    sesion: PropTypes.instanceOf(Map),
-    history: PropTypes.shape(),
-    logout: PropTypes.func,
-    setSnackMessage: PropTypes.func.isRequired,
-    messageSnack: PropTypes.string,
+    pokemons: PropTypes.shape(),
   };
 
-  return MenuApp;
+  return connect(mapStateToProps, undefined)(MenuApp);
 }
 
 export default menu;
